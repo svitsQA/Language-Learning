@@ -29,13 +29,13 @@ public void start(Stage primaryStage) {
 welcomePane = new VBox(10);
 welcomePane.setAlignment(Pos.CENTER);
 mainMenuPane = new VBox(10);
-        mainMenuPane.setAlignment(Pos.CENTER);
+mainMenuPane.setAlignment(Pos.CENTER);
 mainMenuPane.setVisible(false);
 quizPane = new VBox(10);
-        quizPane.setAlignment(Pos.CENTER);
+quizPane.setAlignment(Pos.CENTER);
 quizPane.setVisible(false);
 quizRunnerStage = new VBox(10);
-        quizRunnerStage.setAlignment(Pos.CENTER);
+quizRunnerStage.setAlignment(Pos.CENTER);
 quizRunnerStage.setVisible(false);
 StackPane root = new StackPane();
 
@@ -118,16 +118,16 @@ private void updateQuestionText() {
     questionText.setText(QuizFlow.getTask(sheetIndex));
     }
 private void showAnswerResult(String text) throws IOException {
-        Stage textStage = new Stage();
-        textStage.setTitle("Answer result");
+    Stage textStage = new Stage();
+    textStage.setTitle("Answer result");
     VBox answerLayout = new VBox(10);
     answerLayout.setAlignment(Pos.CENTER);
-        Text yourAnswerLabel = new Text("Your answer");
-        Text yourAnswer = new Text(text);
-        Text result = new Text(checkAnswer(sheetIndex, randomRowNumber, String.valueOf(answerInputField.getText())));
-        Button showAnswer = new Button("Show answer");
+    Text yourAnswerLabel = new Text("Your answer");
+    Text yourAnswer = new Text(text);
+    Text result = new Text(checkAnswer(sheetIndex, randomRowNumber, String.valueOf(answerInputField.getText())));
+    Button showAnswer = new Button("Show answer");
 
-        Text correctAnswer = new Text(showAnswer(sheetIndex, randomRowNumber));
+    Text correctAnswer = new Text(showAnswer(sheetIndex, randomRowNumber));
     answerLayout.getChildren().addAll(yourAnswerLabel, yourAnswer, result, showAnswer);
 
     showAnswer.setOnAction(e -> {
