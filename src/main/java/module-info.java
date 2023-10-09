@@ -7,6 +7,8 @@ module com.languagelearning {
 
     opens com.languagelearning to javafx.fxml;
     exports com.languagelearning;
+    exports com.languagelearning.screens;
+    opens com.languagelearning.screens to javafx.fxml;
 }
 
 

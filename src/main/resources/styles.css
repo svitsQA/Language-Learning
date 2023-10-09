@@ -1,0 +1,58 @@
+.root {
+    -fx-background-image: url(file:///C:/Users/hp/IdeaProjects/PetProject/LanguageLearning/src/main/resources/EnglishBackground.jpg);
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.button {
+    -fx-background-color: #001133;
+    -fx-text-fill: #e60000;
+    -fx-font-size: 16px;
+    -fx-background-radius: 50%;
+    -fx-border-color: #cce6ff;
+    -fx-border-width: 1px;
+    -fx-border-radius: 50%;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 100px;
+}
+
+.button:hover {
+    -fx-background-color: #002266;
+    -fx-text-fill: #ff1a1a;
+}
+
+.button-pressed {
+    -fx-background-color: #00091a;
+    -fx-text-fill: #737373;
+    -fx-border-color: #004f99;
+}
+
+.button-pressed:hover {
+    -fx-background-color: #00091a;
+    -fx-text-fill: #737373;
+    -fx-border-color: #004f99;
+}
+
+.text-label{
+    -fx-fill: white;
+    -fx-font-size: 25px;
+}
+
+.text-style{
+    -fx-fill: white;
+    -fx-font-size: 22px;
+}
+
+.wrong-result-style{
+    -fx-fill: #ff3300;
+    -fx-font-size: 20px;
+}
+
+.correct-result-style{
+    -fx-fill: #009900;
+    -fx-font-size: 20px;
+}
+
+
+
