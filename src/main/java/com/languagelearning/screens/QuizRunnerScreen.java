@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static com.languagelearning.Constants.FILE_PATH_XLSX;
 import static com.languagelearning.ExcelReader.*;
 
 public class QuizRunnerScreen extends Pane implements Screen {
@@ -58,7 +59,6 @@ public class QuizRunnerScreen extends Pane implements Screen {
     private Node getTask(int sheetIndex) {
         Text taskText = new Text("Task");
         taskText.setFont(Font.font("Arial", FontWeight.BOLD, 28));
-
         taskText.setFill(Color.WHITE);
         Text task = new Text(getTask(sheetIndex, 0));
         task.setWrappingWidth(500);
@@ -75,6 +75,15 @@ public class QuizRunnerScreen extends Pane implements Screen {
         submitButton.getStyleClass().add("button");
         Button nextTask = new Button("Next" + "\n\r" + "task");
         nextTask.getStyleClass().add("button");
+        Button showRule = new Button("Show" + "\n\r" + "rule");
+        showRule.getStyleClass().add("button");
+        showRule.setOnAction(e -> {
+            Stage rulesStage = new Stage();
+            RulesScreen rulesScreen = new RulesScreen(sheetIndex);
+            Scene rulesScene = new Scene(rulesScreen, 1000, 500);
+            rulesStage.setScene(rulesScene);
+            showRule.setDisable(true);
+        });
         nextTask.setOnAction(e -> {
             task.setText(getTask(sheetIndex, 0));
             taskSentence.setText(getTask(sheetIndex, 1));
@@ -83,7 +92,7 @@ public class QuizRunnerScreen extends Pane implements Screen {
         HBox buttonsBox = new HBox();
         buttonsBox.setAlignment(Pos.CENTER);
         buttonsBox.setSpacing(10);
-        buttonsBox.getChildren().addAll(submitButton, nextTask);
+        buttonsBox.getChildren().addAll(submitButton, nextTask, showRule);
         submitButton.setOnAction(e -> {
             String answer = answerInputField.getText();
             String resultMessage;
@@ -103,7 +112,7 @@ public class QuizRunnerScreen extends Pane implements Screen {
 
     public static String getTask(int sheetIndex, int columnIndex) {
         getRandomRowNumber(sheetIndex);
-        readExcel(sheetIndex, randomRowNumber, columnIndex);
+        readExcel(FILE_PATH_XLSX, sheetIndex, randomRowNumber, columnIndex);
         return cellValue;
     }
 }

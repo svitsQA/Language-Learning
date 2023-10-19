@@ -19,18 +19,18 @@ public class StartScreen extends Pane implements Screen {
 
     public StartScreen() {
         startButton = new Button("Start");
-        startButton.setLayoutX(450);
-        startButton.setLayoutY(225);
+        startButton.setLayoutX(((double) sceneX / 2) - 50);
+        startButton.setLayoutY(((double) sceneY / 2) - 50);
         exitButton = new Button("Exit");
-        exitButton.setLayoutX(900);
-        exitButton.setLayoutY(400);
+        exitButton.setLayoutX(sceneX - 100);
+        exitButton.setLayoutY(sceneY - 100);
         exitButton.setOnAction(e ->
                 System.exit(0));
         startButton.getStyleClass().add("button");
         getChildren().addAll(startButton, exitButton);
         getStylesheets().add("styles.css");
         startButton.setOnAction(e -> {
-                    startButton.getStyleClass().add("button-pressed");
+                    startButton.setDisable(true);
                     addAdditionalButtons();
                 }
         );
@@ -50,8 +50,8 @@ public class StartScreen extends Pane implements Screen {
         Button grammarButton = new Button("Grammar");
         grammarButton.getStyleClass().add("button-pressed");
 
-        double centerX = 450;
-        double centerY = 225;
+        double centerX = (double) (sceneX - 100) / 2;
+        double centerY = (double) (sceneY - 100) / 2;
         double radius = 110;
 
         accountButton.setLayoutX(centerX);
@@ -64,7 +64,7 @@ public class StartScreen extends Pane implements Screen {
         grammarButton.setLayoutY(centerY);
 
         Pane buttonContainer = new Pane();
-        buttonContainer.setPrefSize(1000, 500);
+        buttonContainer.setPrefSize(sceneX, sceneY);
         buttonContainer.getChildren().addAll(accountButton, quizButton, grammarButton, exitButton);
         additionalButtons.getChildren().add(buttonContainer);
         additionalButtons.setAlignment(Pos.CENTER);
@@ -104,7 +104,7 @@ public class StartScreen extends Pane implements Screen {
     public void navigateToScreen(Screen nextScreen) {
         Scene scene = getScene();
         Stage stage = (Stage) scene.getWindow();
-        Scene nextScene = new Scene((Parent) nextScreen, 1000, 500);
+        Scene nextScene = new Scene((Parent) nextScreen, sceneX, sceneY);
         stage.setScene(nextScene);
         stage.show();
     }

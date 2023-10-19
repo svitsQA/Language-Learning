@@ -47,8 +47,8 @@ public class ExcelReader {
         return randomRowNumber;
     }
 
-    public static String readExcel(int sheetIndex, int rowIndex, int columnIndex) {
-        try (FileInputStream fileInputStream = new FileInputStream(FILE_PATH_XLSX);
+    public static String readExcel(String filePath, int sheetIndex, int rowIndex, int columnIndex) {
+        try (FileInputStream fileInputStream = new FileInputStream(filePath);
              Workbook workbook = new XSSFWorkbook(fileInputStream)) {
             Sheet sheet = workbook.getSheetAt(sheetIndex);
             Row row = sheet.getRow(rowIndex);

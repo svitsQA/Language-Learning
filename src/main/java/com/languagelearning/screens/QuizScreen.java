@@ -26,17 +26,17 @@ public class QuizScreen extends Pane implements Screen {
             Screen previousScreen = new StartScreen();
             navigateToScreen(previousScreen);
         });
-        startQuizButton.setLayoutX(450);
-        startQuizButton.setLayoutY(225);
-        exitButton.setLayoutX(900);
-        exitButton.setLayoutY(400);
+        startQuizButton.setLayoutX((double) (sceneX - 100) / 2);
+        startQuizButton.setLayoutY((double) (sceneY - 100) / 2);
+        exitButton.setLayoutX(sceneX - 100);
+        exitButton.setLayoutY(sceneY - 100);
         backButton.setLayoutX(0);
-        backButton.setLayoutY(400);
+        backButton.setLayoutY(sceneY - 100);
         startQuizButton.getStyleClass().add("button");
         getChildren().addAll(startQuizButton, exitButton, backButton);
         getStylesheets().add("styles.css");
         startQuizButton.setOnAction(e -> {
-                    startQuizButton.getStyleClass().add("button-pressed");
+                    startQuizButton.setDisable(true);
                     addAdditionalButtons();
                 }
         );
@@ -50,6 +50,16 @@ public class QuizScreen extends Pane implements Screen {
             Screen previousScreen = new StartScreen();
             navigateToScreen(previousScreen);
         });
+        Button idiomsButton = new Button("IDIOMS");
+        idiomsButton.setOnAction(e -> {
+            Screen nextScreen = new QuizRunnerScreen(9);
+            navigateToScreen(nextScreen);
+        });
+        Button irregularVerbsButton = new Button("Irregular" + "\n\r" + "Verbs");
+        irregularVerbsButton.setOnAction(e -> {
+            Screen nextScreen = new QuizRunnerScreen(10);
+            navigateToScreen(nextScreen);
+        });
         Button presentSimpleButton = new Button("Present" + "\n\r" + "Simple");
         presentSimpleButton.setOnAction(e -> {
             Screen nextScreen = new QuizRunnerScreen(0);
@@ -61,25 +71,21 @@ public class QuizScreen extends Pane implements Screen {
             navigateToScreen(nextScreen);
         });
         Button futureSimpleButton = new Button("Future" + "\n\r" + "Simple");
-        futureSimpleButton.getStyleClass().add("button-pressed");
         futureSimpleButton.setOnAction(e -> {
             Screen nextScreen = new QuizRunnerScreen(2);
             navigateToScreen(nextScreen);
         });
         Button presentContinuousButton = new Button("Present" + "\n\r" + "Continuous");
-        presentContinuousButton.getStyleClass().add("button-pressed");
         presentContinuousButton.setOnAction(e -> {
             Screen nextScreen = new QuizRunnerScreen(3);
             navigateToScreen(nextScreen);
         });
         Button pastContinuousButton = new Button("Past" + "\n\r" + "Continuous");
-        pastContinuousButton.getStyleClass().add("button-pressed");
         pastContinuousButton.setOnAction(e -> {
             Screen nextScreen = new QuizRunnerScreen(4);
             navigateToScreen(nextScreen);
         });
         Button futureContinuousButton = new Button("Future" + "\n\r" + " Continuous");
-        futureContinuousButton.getStyleClass().add("button-pressed");
         futureContinuousButton.setOnAction(e -> {
             Screen nextScreen = new QuizRunnerScreen(5);
             navigateToScreen(nextScreen);
@@ -104,10 +110,16 @@ public class QuizScreen extends Pane implements Screen {
         });
 
 
-        double centerX = 450;
-        double centerY = 225;
-        double radius = 150;
+        double centerX = (double) (sceneX - 100) / 2;
+        double centerY = (double) (sceneY - 100) / 2;
 
+        double radius1 = 100;
+        double radius2 = 200;
+
+        idiomsButton.setLayoutX(centerX);
+        idiomsButton.setLayoutY(centerY);
+        irregularVerbsButton.setLayoutX(centerX);
+        irregularVerbsButton.setLayoutY(centerY);
         presentSimpleButton.setLayoutX(centerX);
         presentSimpleButton.setLayoutY(centerY);
         pastSimpleButton.setLayoutX(centerX);
@@ -128,16 +140,17 @@ public class QuizScreen extends Pane implements Screen {
         futurePerfectButton.setLayoutY(centerY);
 
         Pane buttonContainer = new Pane();
-        buttonContainer.setPrefSize(1000, 500);
-        buttonContainer.getChildren().addAll(presentSimpleButton, pastSimpleButton, futureSimpleButton,
+        buttonContainer.setPrefSize(sceneX, sceneY);
+        buttonContainer.getChildren().addAll(idiomsButton, irregularVerbsButton, presentSimpleButton, pastSimpleButton, futureSimpleButton,
                 presentContinuousButton, pastContinuousButton, futureContinuousButton,
                 presentPerfectButton, pastPerfectButton, futurePerfectButton,
                 exitButton, backButton);
         additionalButtons.getChildren().add(buttonContainer);
         additionalButtons.setAlignment(Pos.CENTER);
         double angleIncrement = 360.0 / 9;
-
         getChildren().add(additionalButtons);
+        addFadeInAnimation(idiomsButton);
+        addFadeInAnimation(irregularVerbsButton);
         addFadeInAnimation(presentSimpleButton);
         addFadeInAnimation(pastSimpleButton);
         addFadeInAnimation(futureSimpleButton);
@@ -147,15 +160,17 @@ public class QuizScreen extends Pane implements Screen {
         addFadeInAnimation(presentPerfectButton);
         addFadeInAnimation(pastPerfectButton);
         addFadeInAnimation(futurePerfectButton);
-        positionButton(presentSimpleButton, centerX, centerY, radius, 0);
-        positionButton(pastSimpleButton, centerX, centerY, radius, angleIncrement);
-        positionButton(futureSimpleButton, centerX, centerY, radius, angleIncrement * 2);
-        positionButton(presentContinuousButton, centerX, centerY, radius, angleIncrement * 3);
-        positionButton(pastContinuousButton, centerX, centerY, radius, angleIncrement * 4);
-        positionButton(futureContinuousButton, centerX, centerY, radius, angleIncrement * 5);
-        positionButton(presentPerfectButton, centerX, centerY, radius, angleIncrement * 6);
-        positionButton(pastPerfectButton, centerX, centerY, radius, angleIncrement * 7);
-        positionButton(futurePerfectButton, centerX, centerY, radius, angleIncrement * 8);
+        positionButton(idiomsButton, centerX, centerY, radius1, 0);
+        positionButton(irregularVerbsButton, centerX, centerY, radius1, 180);
+        positionButton(presentSimpleButton, centerX, centerY, radius2, 0);
+        positionButton(pastSimpleButton, centerX, centerY, radius2, angleIncrement);
+        positionButton(futureSimpleButton, centerX, centerY, radius2, angleIncrement * 2);
+        positionButton(presentContinuousButton, centerX, centerY, radius2, angleIncrement * 3);
+        positionButton(pastContinuousButton, centerX, centerY, radius2, angleIncrement * 4);
+        positionButton(futureContinuousButton, centerX, centerY, radius2, angleIncrement * 5);
+        positionButton(presentPerfectButton, centerX, centerY, radius2, angleIncrement * 6);
+        positionButton(pastPerfectButton, centerX, centerY, radius2, angleIncrement * 7);
+        positionButton(futurePerfectButton, centerX, centerY, radius2, angleIncrement * 8);
     }
 
     private void positionButton(Button button, double centerX, double centerY, double radius, double angle) {
@@ -184,7 +199,7 @@ public class QuizScreen extends Pane implements Screen {
     public void navigateToScreen(Screen nextScreen) {
         Scene scene = getScene();
         Stage stage = (Stage) scene.getWindow();
-        Scene nextScene = new Scene((Parent) nextScreen, 1000, 500);
+        Scene nextScene = new Scene((Parent) nextScreen, sceneX, sceneY);
         stage.setScene(nextScene);
         stage.show();
     }

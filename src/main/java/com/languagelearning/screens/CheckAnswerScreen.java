@@ -11,8 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import static com.languagelearning.Constants.MESSAGE_CORRECT_ANSWER;
-import static com.languagelearning.Constants.MESSAGE_WRONG_ANSWER;
+import static com.languagelearning.Constants.*;
 import static com.languagelearning.ExcelReader.randomRowNumber;
 import static com.languagelearning.ExcelReader.showAnswer;
 
@@ -22,10 +21,9 @@ public class CheckAnswerScreen extends Pane implements Screen {
     public CheckAnswerScreen(String answer, String resultMessage, int sheetIndex) {
         textStage = new Stage();
         textStage.setTitle("Answer result");
-
         VBox answerLayout = new VBox(10);
         answerLayout.setAlignment(Pos.CENTER);
-
+        answerLayout.setStyle(IMAGE_PATH_SCHOOL_BOARD);
         Text yourAnswerLabel = new Text("Your answer:");
         yourAnswerLabel.getStyleClass().add("text-label");
 

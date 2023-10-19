@@ -3,6 +3,7 @@ module com.languagelearning {
     requires javafx.fxml;
     requires poi;
     requires poi.ooxml;
+    requires org.json;
 
 
     opens com.languagelearning to javafx.fxml;

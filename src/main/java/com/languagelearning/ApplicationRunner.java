@@ -17,6 +17,7 @@ public class ApplicationRunner extends Application {
         root.getChildren().addAll(startScreen);
         Scene scene = new Scene(root, sceneX, sceneY);
         scene.getStylesheets().add("styles.css");
+        primaryStage.setResizable(false);
         primaryStage.setTitle("English learning!");
         primaryStage.setScene(scene);
         primaryStage.show();
