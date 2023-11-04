@@ -1,6 +1,6 @@
 package com.languagelearning;
 
-import com.languagelearning.screens.StartScreen;
+import com.languagelearning.screens.MainMenu;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
@@ -12,9 +12,9 @@ import static com.languagelearning.Screen.sceneY;
 public class ApplicationRunner extends Application {
 
     public void start(Stage primaryStage) {
-        StartScreen startScreen = new StartScreen();
-        StackPane root = new StackPane();
-        root.getChildren().addAll(startScreen);
+        MainMenu menu = new MainMenu();
+        StackPane root = new StackPane(menu);
+        root.getChildren().addAll();
         Scene scene = new Scene(root, sceneX, sceneY);
         scene.getStylesheets().add("styles.css");
         primaryStage.setResizable(false);

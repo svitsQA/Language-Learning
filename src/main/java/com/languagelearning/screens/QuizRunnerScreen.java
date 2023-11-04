@@ -27,23 +27,14 @@ public class QuizRunnerScreen extends Pane implements Screen {
     VBox taskBox;
 
     public QuizRunnerScreen(int sheetIndex) {
-        Button exitButton = new Button("Exit");
-        exitButton.setOnAction(e ->
-                System.exit(0));
-        Button backButton = new Button("Back");
-        backButton.setOnAction(e -> {
-            Screen nextScreen = new QuizScreen();
-            navigateToScreen(nextScreen);
-        });
-        exitButton.setLayoutX(900);
-        exitButton.setLayoutY(400);
-        backButton.setLayoutX(0);
-        backButton.setLayoutY(400);
+        MainMenu menu = new MainMenu();
         getStylesheets().add("styles.css");
         getTask(sheetIndex);
         taskBox.setLayoutX(250);
         taskBox.setLayoutY(150);
-        getChildren().addAll(backButton, exitButton, taskBox);
+        getChildren().addAll(
+                menu,
+                taskBox);
     }
 
 
