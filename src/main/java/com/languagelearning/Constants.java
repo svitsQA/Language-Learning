@@ -9,4 +9,8 @@ public class Constants {
     public static final String NEGATIVE_FORM_BOX_NAME = "NEGATIVE FORM";
     public static final String INTERROGATIVE_BOX_NAME = "INTERROGATIVE FORM";
     public static final String EXAMPLES_BOX_NAME = "EXAMPLES";
+    public static final String FILE_PATH_CORRECT_ANSWER = "file:///C:\\Users\\hp\\IdeaProjects\\PetProject\\LanguageLearning\\src\\main\\resources\\GreenTick.png";
+    public static final String FILE_PATH_WRONG_ANSWER = "file:///C:\\Users\\hp\\IdeaProjects\\PetProject\\LanguageLearning\\src\\main\\resources\\RedCross.png";
+
+
 }

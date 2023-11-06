@@ -30,7 +30,7 @@ public class RulesScreen extends Pane implements Screen {
 
     public RulesScreen(int sheetIndex) {
         Stage textStage = new Stage();
-        textStage.setTitle("Rule");
+        textStage.setTitle("Rules");
         VBox answerLayout = new VBox(10);
         answerLayout.setStyle(IMAGE_PATH_SCHOOL_BOARD);
         answerLayout.setAlignment(Pos.TOP_CENTER);

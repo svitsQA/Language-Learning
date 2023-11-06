@@ -62,18 +62,17 @@ public class QuizRunnerScreen extends Pane implements Screen {
         answerInputField = new TextField();
         answerInputField.setMaxWidth(500);
         answerInputField.setPromptText("Enter your answer");
-        Button submitButton = new Button("Submit" + "\n\r" + "answer");
+        Button submitButton = new Button("Submit answer");
         submitButton.getStyleClass().add("button");
-        Button nextTask = new Button("Next" + "\n\r" + "task");
+        Button nextTask = new Button("Next task");
         nextTask.getStyleClass().add("button");
-        Button showRule = new Button("Show" + "\n\r" + "rule");
+        Button showRule = new Button("Rule");
         showRule.getStyleClass().add("button");
         showRule.setOnAction(e -> {
             Stage rulesStage = new Stage();
             RulesScreen rulesScreen = new RulesScreen(sheetIndex);
             Scene rulesScene = new Scene(rulesScreen, 1000, 500);
             rulesStage.setScene(rulesScene);
-            showRule.setDisable(true);
         });
         nextTask.setOnAction(e -> {
             task.setText(getTask(sheetIndex, 0));

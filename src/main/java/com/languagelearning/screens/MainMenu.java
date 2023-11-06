@@ -21,6 +21,7 @@ public class MainMenu extends Pane implements Screen {
             Screen nextScreen = new QuizRunnerScreen(9);
             navigateToScreen(nextScreen);
         });
+        idiomsMenuItem.setGraphic(null);
         MenuItem irregularVerbsMenuItem = new MenuItem("Irregular verbs");
         irregularVerbsMenuItem.setOnAction(e -> {
             Screen nextScreen = new QuizRunnerScreen(10);
@@ -75,16 +76,15 @@ public class MainMenu extends Pane implements Screen {
         quizMenuItem.getItems().addAll(idiomsMenuItem, irregularVerbsMenuItem, presentSimpleMenuItem, pastSimpleMenuItem, futureSimpleMenuItem,
                 presentContinuousMenuItem, pastContinuousMenuItem, futureContinuousMenuItem, presentPerfectMenuItem, pastPerfectMenuItem, futurePerfectMenuItem);
 
-        Menu menuItem = new Menu("Menu");
+        Menu menu = new Menu("Menu");
         Menu menuCloseItem = new Menu("Close");
         menuCloseItem.setOnAction(e -> {
 //            TODO add close action
         });
 
         MenuBar menuBar = new MenuBar();
-        menuBar.getMenus().addAll(menuItem, menuCloseItem);
-
-        menuItem.getItems().addAll(accountMenuItem, quizMenuItem, grammarMenuItem);
+        menu.getItems().addAll(accountMenuItem, quizMenuItem, grammarMenuItem);
+        menuBar.getMenus().addAll(menu, menuCloseItem);
         getChildren().addAll(menuBar);
     }
 

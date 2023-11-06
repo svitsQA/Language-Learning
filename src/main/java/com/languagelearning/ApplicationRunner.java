@@ -12,6 +12,7 @@ import static com.languagelearning.Screen.sceneY;
 public class ApplicationRunner extends Application {
 
     public void start(Stage primaryStage) {
+
         MainMenu menu = new MainMenu();
         StackPane root = new StackPane(menu);
         root.getChildren().addAll();

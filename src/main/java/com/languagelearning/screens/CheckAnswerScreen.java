@@ -5,6 +5,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -31,13 +33,25 @@ public class CheckAnswerScreen extends Pane implements Screen {
         yourAnswer.getStyleClass().add("text-label");
 
         Text result = new Text(resultMessage);
-        if (resultMessage == MESSAGE_WRONG_ANSWER) {
+        ImageView imageView = new ImageView();
+        Image image = null;
+        if (resultMessage.equals(MESSAGE_WRONG_ANSWER)) {
             result.getStyleClass().add("wrong-result-style");
-        } else if (resultMessage == MESSAGE_CORRECT_ANSWER) {
+            image = new Image(FILE_PATH_WRONG_ANSWER);
+        } else if (resultMessage.equals(MESSAGE_CORRECT_ANSWER)) {
             result.getStyleClass().add("correct-result-style");
+            image = new Image(FILE_PATH_CORRECT_ANSWER);
         }
+
+        imageView.setImage(image);
+        HBox imageBox = new HBox(10);
+        imageBox.getChildren().add(imageView);
+        imageBox.setAlignment(Pos.CENTER);
+        imageBox.maxHeight(10);
+        imageBox.maxWidth(10);
+
         HBox buttonsBox = new HBox(10);
-        Button correctAnswerButton = new Button("Show" + "\n\r" + "correct" + "\n\r" + "answer");
+        Button correctAnswerButton = new Button("Correct answer");
         correctAnswerButton.getStyleClass().add("button");
         Text correctAnswerLabel = new Text("Correct answer:");
         correctAnswerLabel.getStyleClass().add("text-label");
@@ -57,7 +71,7 @@ public class CheckAnswerScreen extends Pane implements Screen {
         });
 
 
-        Button showRule = new Button("Show" + "\n\r" + "rule");
+        Button showRule = new Button("Rule");
         showRule.getStyleClass().add("button");
 
         showRule.setOnAction(e -> {
@@ -67,7 +81,7 @@ public class CheckAnswerScreen extends Pane implements Screen {
         });
         buttonsBox.getChildren().addAll(correctAnswerButton, showRule);
         buttonsBox.setAlignment(Pos.CENTER);
-        answerLayout.getChildren().addAll(yourAnswerLabel, yourAnswer, result, buttonsBox);
+        answerLayout.getChildren().addAll(yourAnswerLabel, yourAnswer, result, imageBox, buttonsBox);
         Scene textScene = new Scene(answerLayout, 900, 450);
         textScene.getStylesheets().add("styles.css");
         textStage.setScene(textScene);
