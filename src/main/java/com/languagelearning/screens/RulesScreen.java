@@ -4,8 +4,10 @@ import com.languagelearning.Screen;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -17,46 +19,50 @@ import static com.languagelearning.Constants.*;
 import static com.languagelearning.ExcelReader.readExcel;
 
 public class RulesScreen extends Pane implements Screen {
-    private VBox topic;
     private Text topicName;
     private VBox affirmativeForm;
     private VBox negativeForm;
     private VBox interrogativeForm;
     private HBox rulesBox;
     private VBox examplesForm;
-    private String rulesFilePath = "C:\\Users\\hp\\IdeaProjects\\PetProject\\LanguageLearning\\src\\main\\resources\\com\\Rules.xlsx";
+    private String rulesFilePath = "C:\\Users\\sanzharevska.PAYSAXAS\\CODE\\Language-Learning\\src\\main\\resources\\com\\Rules.xlsx";
     private int rulesRowNumber;
     private int rulesSheetIndex = 0;
 
     public RulesScreen(int sheetIndex) {
         Stage textStage = new Stage();
         textStage.setTitle("Rules");
-        VBox answerLayout = new VBox(10);
-        answerLayout.setStyle(IMAGE_PATH_SCHOOL_BOARD);
-        answerLayout.setAlignment(Pos.TOP_CENTER);
+        VBox rulesLayout = new VBox(10);
+        rulesLayout.setStyle(IMAGE_PATH_SCHOOL_BOARD);
+        rulesLayout.setAlignment(Pos.TOP_CENTER);
+        Button backButton = new Button("Close");
+        backButton.getStyleClass().add("exitButton");
+        backButton.setOnAction(e -> {
+            textStage.close();
+        });
         getRuleTopic(sheetIndex);
-        topic.setAlignment(Pos.CENTER);
         getRulesBox(sheetIndex);
         getExamplesForm(sheetIndex);
         getRuleRowNumber(sheetIndex);
         examplesForm.setAlignment(Pos.BOTTOM_CENTER);
-        answerLayout.getChildren().addAll(topic, rulesBox, examplesForm);
-        Scene textScene = new Scene(answerLayout, sceneX, sceneY);
+        HBox header = new HBox(300);
+        HBox topic = new HBox();
+        topic.getChildren().setAll(topicName);
+        header.getChildren().addAll(backButton, topic);
+        rulesLayout.getChildren().addAll(header, rulesBox, examplesForm);
+        Scene textScene = new Scene(rulesLayout, sceneX, sceneY);
         textScene.getStylesheets().add("styles.css");
         textStage.setScene(textScene);
         textStage.show();
     }
 
-    private VBox getRuleTopic(int sheetIndex) {
+    private Text getRuleTopic(int sheetIndex) {
         getRuleRowNumber(sheetIndex);
-        topic = new VBox();
         topicName = new Text();
-        Text topicSpace = new Text();
         topicName.setText(readExcel(rulesFilePath, rulesSheetIndex, rulesRowNumber, 0));
         topicName.setFont(Font.font("Arial", FontWeight.BOLD, 28));
         topicName.setFill(Color.WHITE);
-        topic.getChildren().addAll(topicSpace, topicName);
-        return topic;
+        return topicName;
     }
 
     private VBox getAffirmativeForm(int sheetIndex) {

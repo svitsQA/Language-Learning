@@ -1,8 +1,10 @@
 package com.languagelearning.screens;
 
+import com.languagelearning.ApplicationRunner;
 import com.languagelearning.Screen;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -10,8 +12,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class MainMenu extends Pane implements Screen {
-
     public MainMenu() {
+
         Menu accountMenuItem = new Menu("Account");
         Menu quizMenuItem = new Menu("Quiz");
         Menu grammarMenuItem = new Menu("Grammar");
@@ -77,15 +79,19 @@ public class MainMenu extends Pane implements Screen {
                 presentContinuousMenuItem, pastContinuousMenuItem, futureContinuousMenuItem, presentPerfectMenuItem, pastPerfectMenuItem, futurePerfectMenuItem);
 
         Menu menu = new Menu("Menu");
-        Menu menuCloseItem = new Menu("Close");
-        menuCloseItem.setOnAction(e -> {
-//            TODO add close action
+        Button exitButton = new Button("Exit");
+        exitButton.getStyleClass().add("exitButton");
+        exitButton.setLayoutX(81);
+        exitButton.setOnAction(e -> {
+            Scene scene = getScene();
+            Stage stage = (Stage) scene.getWindow();
+            stage.close();
         });
 
         MenuBar menuBar = new MenuBar();
         menu.getItems().addAll(accountMenuItem, quizMenuItem, grammarMenuItem);
-        menuBar.getMenus().addAll(menu, menuCloseItem);
-        getChildren().addAll(menuBar);
+        menuBar.getMenus().addAll(menu);
+        getChildren().addAll(menuBar, exitButton);
     }
 
     @Override

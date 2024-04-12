@@ -1,5 +1,5 @@
 .root {
-    -fx-background-image: url(file:///C:/Users/hp/IdeaProjects/PetProject/LanguageLearning/src/main/resources/EnglishBackground.jpg);
+    -fx-background-image: url(file:///C:/Users/sanzharevska.PAYSAXAS/CODE/Language-Learning/src/main/resources/EnglishBackground.jpg);
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
@@ -8,6 +8,16 @@
 .button {
     -fx-background-color: #B8001A;
     -fx-pref-width: 170px;
+    -fx-pref-height: 30px;
+    -fx-text-fill: #000066;
+    -fx-font-size: 16px;
+    -fx-border-color: #cce6ff;
+    -fx-border-width: 1px;
+}
+
+.exitButton{
+    -fx-background-color: #B8001A;
+    -fx-pref-width: 90px;
     -fx-pref-height: 30px;
     -fx-text-fill: #000066;
     -fx-font-size: 16px;
@@ -83,6 +93,17 @@
 .menu-item:hover .label,
 .menu-item:hover .text {
     -fx-text-fill: #B8001A;
+}
+
+.clearInputField {
+    -fx-background-color: white;
+    -fx-border-color: white;
+    -fx-pref-height: 10px;
+    -fx-pref-width: 10px;
+}
+
+.clearInputField:hover {
+    -fx-background-color: white;
 }
 
 

@@ -60,8 +60,17 @@ public class QuizRunnerScreen extends Pane implements Screen {
         taskSentence.setFont(Font.font("Arial", 16));
         taskSentence.setFill(Color.SNOW);
         answerInputField = new TextField();
+        answerInputField.setMinSize(500, 40);
         answerInputField.setMaxWidth(500);
         answerInputField.setPromptText("Enter your answer");
+
+
+        Button clearButton = new Button("X");
+        clearButton.getStyleClass().add("clearInputField");
+        clearButton.setOnAction(e -> answerInputField.clear());
+        HBox fieldContainer = new HBox(answerInputField, clearButton);
+        clearButton.setFocusTraversable(false);
+        fieldContainer.setAlignment(Pos.CENTER);
         Button submitButton = new Button("Submit answer");
         submitButton.getStyleClass().add("button");
         Button nextTask = new Button("Next task");
@@ -82,10 +91,17 @@ public class QuizRunnerScreen extends Pane implements Screen {
         HBox buttonsBox = new HBox();
         buttonsBox.setAlignment(Pos.CENTER);
         buttonsBox.setSpacing(10);
+        if (sheetIndex>=9 ){
+            buttonsBox.getChildren().addAll(submitButton, nextTask);
+        }else{
         buttonsBox.getChildren().addAll(submitButton, nextTask, showRule);
+        }
+        submitButton.disableProperty().bind(
+                answerInputField.textProperty().isEmpty());
         submitButton.setOnAction(e -> {
             String answer = answerInputField.getText();
             String resultMessage;
+            if (!answer.isEmpty()){
             try {
                 resultMessage = checkAnswer(sheetIndex, randomRowNumber, answer);
             } catch (IOException ex) {
@@ -93,8 +109,9 @@ public class QuizRunnerScreen extends Pane implements Screen {
             }
             checkAnswerScreen = new CheckAnswerScreen(answer, resultMessage, sheetIndex);
             checkAnswerScreen.show();
+                }
         });
-        taskBox = new VBox(taskText, task, taskSentence, answerInputField, buttonsBox);
+        taskBox = new VBox(taskText, task, taskSentence, fieldContainer, buttonsBox);
         taskBox.setSpacing(10);
         taskBox.setAlignment(Pos.CENTER);
         return taskBox;
