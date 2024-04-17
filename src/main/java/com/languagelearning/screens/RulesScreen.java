@@ -25,7 +25,7 @@ public class RulesScreen extends Pane implements Screen {
     private VBox interrogativeForm;
     private HBox rulesBox;
     private VBox examplesForm;
-    private String rulesFilePath = "C:\\Users\\sanzharevska.PAYSAXAS\\CODE\\Language-Learning\\src\\main\\resources\\com\\Rules.xlsx";
+    private String rulesFilePath = "src\\main\\resources\\com\\Rules.xlsx";
     private int rulesRowNumber;
     private int rulesSheetIndex = 0;
 

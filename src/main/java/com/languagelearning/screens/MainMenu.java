@@ -1,6 +1,5 @@
 package com.languagelearning.screens;
 
-import com.languagelearning.ApplicationRunner;
 import com.languagelearning.Screen;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
