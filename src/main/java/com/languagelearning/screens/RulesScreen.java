@@ -167,6 +167,8 @@ public class RulesScreen extends Pane implements Screen {
         return rulesRowNumber;
     }
 
+
+
     @Override
     public void navigateToScreen(Screen nextScreen) {
         Scene scene = getScene();

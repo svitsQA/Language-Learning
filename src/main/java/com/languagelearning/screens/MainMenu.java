@@ -17,6 +17,13 @@ public class MainMenu extends Pane implements Screen {
         Menu quizMenuItem = new Menu("Quiz");
         Menu grammarMenuItem = new Menu("Grammar");
 
+        MenuItem grammarScreen = new MenuItem("Show rules");
+        grammarScreen.setOnAction(e -> {
+            Screen nextScreen = new GrammarScreen();
+            navigateToScreen(nextScreen);
+        });
+        grammarMenuItem.getItems().addAll(grammarScreen);
+
         MenuItem idiomsMenuItem = new MenuItem("IDIOMS");
         idiomsMenuItem.setOnAction(e -> {
             Screen nextScreen = new QuizRunnerScreen(9);
